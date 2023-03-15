@@ -1,18 +1,26 @@
-name: Hellow world workflow
+name: GetTattle-api-data-insertion-into-db-and-csv-into-s3
 on:
+  schedule:
+    - cron: "* * * * *"
   push:
     branches:
-      - main
+      - test1
   pull_request:
     branches:
-      - main
-  workflow_dispatch:
-
+      - test1
 jobs:
-  hello:
+  run_script:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name : hello world
-      run: echo "Hello world"
-      shell: bash
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+      - name: Run Python script
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+        run: |
+          python test.py
