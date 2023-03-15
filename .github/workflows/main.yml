@@ -16,3 +16,6 @@ jobs:
     - name : hello world
       run: echo "Hello world"
       shell: bash
+    - name: Upload files to S3
+      uses: jakejarvis/s3-sync-action@master
+
