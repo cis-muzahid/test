@@ -19,5 +19,7 @@ jobs:
         with:
           python-version: "3.9"
       - name: Run Python script
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
           python test.py
