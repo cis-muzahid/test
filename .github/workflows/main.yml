@@ -1,15 +1,23 @@
-name: Hellow world workflow
+name: GetTattle-api-data-insertion-into-db-and-csv-into-s3
 on:
+  schedule:
+    - cron: "* * * * *"
   push:
     branches:
       - test1
   pull_request:
     branches:
       - test1
-  workflow_dispatch: null
 jobs:
   run_script:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
       - name: Run Python script
-        run: python test.py
+        run: |
+          python test.py \
