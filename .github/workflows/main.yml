@@ -3,10 +3,10 @@ name: Hellow world workflow
 on:
   push:
     branches:
-      - main
+      - test1
   pull_request:
     branches:
-      - main
+      - test1
   workflow_dispatch: null
 jobs:
   hi:
@@ -16,3 +16,4 @@ jobs:
       - name: hi world
         run: echo "hi world"
         shell: bash
+      run: test.py
